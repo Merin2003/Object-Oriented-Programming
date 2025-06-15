@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+public class Mainclass
+{
+    public static void main(String[] args)
+    {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter a string: ");
+        String str = input.nextLine();
+
+        char[] c1 = str.toCharArray();
+
+        palindrome p = new palindrome();
+        if (p.reverse(c1)) 
+        {
+            System.out.println("palindrome");
+        } 
+        else 
+        {
+            System.out.println("not palindrome");
+        }
+    }
+}
+
+class palindrome 
+{
+    boolean reverse(char c2[]) 
+    {
+        int left = 0, right = c2.length - 1;
+        while (left < right) 
+        {
+            if (c2[left] != c2[right]) 
+            {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+}
