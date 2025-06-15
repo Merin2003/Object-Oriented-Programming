@@ -1,0 +1,33 @@
+import java.io.*;
+
+public class FileCopyExample 
+{
+    public static void main(String[] args) 
+    {
+        try 
+        {
+            
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            System.out.print("Enter the input file name: ");
+            String inputFile = br.readLine();
+            System.out.print("Enter the output file name: ");
+            String outputFile = br.readLine();
+            BufferedReader fr = new BufferedReader(new FileReader(inputFile));
+            BufferedWriter fw = new BufferedWriter(new FileWriter(outputFile));
+            String line;
+            while ((line = fr.readLine()) != null) 
+            {
+                fw.write(line);
+                fw.newLine();
+            }
+            System.out.println("File copied successfully.");
+            fr.close();
+            fw.close();
+
+        } 
+        catch (IOException e) 
+        {
+            System.err.println("An I/O error occurred: " + e.getMessage());
+        }
+    }
+}
