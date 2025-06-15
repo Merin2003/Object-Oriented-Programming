@@ -1,0 +1,59 @@
+
+class InvalidNumberException extends Exception 
+{
+    InvalidNumberException() 
+    {
+        
+        super("Error: Invalid number. Only positive numbers are allowed.");
+    }
+}
+
+public class Main 
+{
+    public static void main(String[] args)
+    {
+        try 
+        {
+            int n = args.length;
+            if (n == 0) 
+            {
+                System.out.println("No arguments provided.");
+                return;
+            }
+
+            int[] num = new int[n];
+            double sum = 0;
+
+            for (int i = 0; i < n; i++) 
+            {
+                try 
+                {
+                    num[i] = Integer.parseInt(args[i]);
+                    if (num[i] <= 0) 
+                    {
+                        throw new InvalidNumberException();
+                    }
+                    sum += num[i];
+                } 
+                catch (InvalidNumberException e) 
+                {
+                    System.err.println(e.getMessage());
+                    return;
+                } 
+                catch (NumberFormatException e) 
+                {
+                    System.err.println("Error: Invalid input. Please enter integers only.");
+                    return;
+                }
+            }
+
+            double avg = sum / n;
+            System.out.println("Average = " + avg);
+
+        } 
+        catch (Exception e) 
+        {
+            System.err.println("Unexpected error: " + e.getMessage());
+        }
+    }
+}
